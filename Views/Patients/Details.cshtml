@@ -1,0 +1,29 @@
+﻿@model Patient
+@{ ViewData["Title"] = "Patient Details"; var role = Context.Session.GetRole(); }
+<h4>@Model.Person.FullName <small class="text-muted">@Model.PatientCode</small></h4>
+<div class="row">
+<div class="col-md-6 card p-3 mb-3 shadow-sm">
+<p><strong>Gender:</strong> @Model.Person.Gender</p>
+<p><strong>DOB:</strong> @Model.Person.DateOfBirth.ToShortDateString()</p>
+<p><strong>Phone:</strong> @Model.Person.Phone</p>
+<p><strong>Blood Type:</strong> @Model.BloodType</p>
+<p><strong>Allergies:</strong> @Model.Allergies</p>
+</div>
+<div class="col-md-6 card p-3 mb-3 shadow-sm">
+<h6>Address</h6>
+@foreach(var a in Model.Addresses){<p>@a.AddressLine1, @a.City</p>}
+</div>
+</div>
+@if(role is "Admin" or "Operator" or "Nurse" or "Doctor"){
+<div class="card p-3 mb-3 shadow-sm">
+<h6>Upload Document</h6>
+<form asp-action="UploadDocument" method="post" enctype="multipart/form-data">
+<input type="hidden" name="patientId" value="@Model.PatientId" />
+<div class="row g-2"><div class="col-md-4"><input name="documentName" class="form-control" placeholder="e.g. X-Ray Report, Blood Test PDF" required /></div>
+<div class="col-md-4"><input type="file" name="file" class="form-control" required title="e.g. PDF, JPG, or PNG file" /></div>
+<div class="col-md-4"><button class="btn btn-primary">Upload</button></div></div>
+</form></div>}
+<div class="card p-3 shadow-sm"><h6>Documents</h6>
+<ul>@foreach(var d in Model.Documents){<li>@d.DocumentName <a asp-action="DownloadDocument" asp-route-id="@d.PatientDocumentId">Download</a></li>}</ul>
+</div>
+<a asp-action="Index" class="btn btn-secondary mt-2">Back</a>

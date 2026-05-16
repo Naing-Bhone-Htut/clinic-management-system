@@ -1,0 +1,41 @@
+@model IEnumerable<LabRecord>
+@{ ViewData["Title"] = "Lab Records"; var role = Context.Session.GetRole(); }
+
+<div class="page-toolbar">
+    <form method="get" class="d-flex gap-2">
+        <input name="search" value="@ViewBag.Search" class="form-control" placeholder="e.g. test name or patient name" />
+        <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i> Search</button>
+    </form>
+    @if (role is "Admin" or "Doctor" or "Nurse")
+    {
+        <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Add Lab Record</a>
+    }
+</div>
+
+<div class="table-responsive shadow-sm">
+    <table class="table table-striped">
+        <thead>
+        <tr><th>Patient</th><th>Test</th><th>Date</th><th>Result</th><th class="text-end">Actions</th></tr>
+        </thead>
+        <tbody>
+        @foreach (var l in Model)
+        {
+            <tr>
+                <td>@l.Patient.Person.FullName</td>
+                <td>@l.TestName</td>
+                <td>@l.TestDate.ToShortDateString()</td>
+                <td>@l.TestResult</td>
+                <td>
+                    <div class="action-buttons">
+                        <a asp-action="Edit" asp-route-id="@l.LabRecordId" class="btn btn-sm btn-warning">Edit</a>
+                        @if (l.DocumentPath != null)
+                        {
+                            <a asp-action="Download" asp-route-id="@l.LabRecordId" class="btn btn-sm btn-info">Download</a>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,8 @@
+﻿@model IncomeBill
+@{ ViewData["Title"] = "Income Bill Details"; }
+<p><strong>Patient:</strong> @Model.Patient.Person.FullName</p>
+<p><strong>Date:</strong> @Model.BillDate.ToShortDateString()</p>
+<p><strong>Total:</strong> @Model.TotalAmount.ToString("N0") MMK</p>
+<table class="table table-sm"><thead><tr><th>Item</th><th>Qty</th><th>Price</th><th>Total</th></tr></thead>
+<tbody>@foreach(var i in Model.Items){<tr><td>@i.CostRate.Description</td><td>@i.Quantity</td><td>@i.UnitPrice.ToString("N0")</td><td>@i.LineTotal.ToString("N0")</td></tr>}</tbody></table>
+<a asp-action="IncomeIndex" class="btn btn-secondary">Back</a>

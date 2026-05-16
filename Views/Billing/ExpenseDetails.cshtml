@@ -1,0 +1,7 @@
+﻿@model ExpenseBill
+@{ ViewData["Title"] = "Expense Bill Details"; }
+<p><strong>Date:</strong> @Model.BillDate.ToShortDateString()</p>
+<p><strong>Total:</strong> @Model.TotalAmount.ToString("N0") MMK</p>
+<table class="table table-sm"><thead><tr><th>Item</th><th>Qty</th><th>Total</th></tr></thead>
+<tbody>@foreach(var i in Model.Items){<tr><td>@i.CostRate.Description</td><td>@i.Quantity</td><td>@i.LineTotal.ToString("N0")</td></tr>}</tbody></table>
+<a asp-action="ExpenseIndex" class="btn btn-secondary">Back</a>

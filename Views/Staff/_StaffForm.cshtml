@@ -1,0 +1,15 @@
+﻿@model StaffFormViewModel
+<div class="row g-3">
+<div class="col-md-3"><label asp-for="StaffType" class="form-label"></label>
+<select asp-for="StaffType" class="form-select"><option value="">-- Select role --</option><option>Doctor</option><option>Nurse</option><option>Operator</option></select></div>
+<div class="col-md-3"><label asp-for="FirstName" class="form-label"></label><input asp-for="FirstName" class="form-control" placeholder="e.g. Aung" /></div>
+<div class="col-md-3"><label asp-for="LastName" class="form-label"></label><input asp-for="LastName" class="form-control" placeholder="e.g. Kyaw" /></div>
+<div class="col-md-3"><label asp-for="Gender" class="form-label"></label><select asp-for="Gender" class="form-select"><option value="">-- Select gender --</option><option>Male</option><option>Female</option></select></div>
+<div class="col-md-3"><label asp-for="DateOfBirth" class="form-label"></label><input asp-for="DateOfBirth" type="date" class="form-control" title="e.g. 1985-05-20" /></div>
+<div class="col-md-3"><label asp-for="Phone" class="form-label"></label><input asp-for="Phone" class="form-control" placeholder="e.g. 09222222222" /></div>
+<div class="col-md-3"><label asp-for="LicenseNumber" class="form-label"></label><input asp-for="LicenseNumber" class="form-control" placeholder="e.g. DOC-002, NUR-002" /></div>
+<div class="col-md-3"><label asp-for="Specialty" class="form-label"></label><input asp-for="Specialty" class="form-control" placeholder="e.g. General Medicine" /></div>
+<div class="col-md-3"><label asp-for="Username" class="form-label"></label><input asp-for="Username" class="form-control" placeholder="e.g. dr.smith" /></div>
+<div class="col-md-3"><label asp-for="Password" class="form-label"></label><input asp-for="Password" class="form-control" placeholder="e.g. password123 (min 6 chars)" /></div>
+<div class="col-md-3 form-check mt-4"><input asp-for="CreateUserAccount" class="form-check-input" /><label asp-for="CreateUserAccount" class="form-check-label"></label></div>
+</div>

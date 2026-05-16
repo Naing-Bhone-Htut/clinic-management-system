@@ -1,0 +1,41 @@
+@model IEnumerable<CostRate>
+@{ ViewData["Title"] = "Cost Rates"; var role = Context.Session.GetRole(); }
+
+<div class="page-toolbar">
+    <div></div>
+    @if (role is "Admin" or "Operator")
+    {
+        <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Add Cost Rate</a>
+    }
+</div>
+
+<div class="table-responsive shadow-sm">
+    <table class="table table-striped">
+        <thead>
+        <tr><th>Code</th><th>Description</th><th>Amount</th><th>Type</th><th>Active</th><th class="text-end">Actions</th></tr>
+        </thead>
+        <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.CostCode</td>
+                <td>@c.Description</td>
+                <td>@c.CostAmount.ToString("N0")</td>
+                <td>@c.CostType</td>
+                <td>@(c.IsActive ? "Yes" : "No")</td>
+                <td>
+                    <div class="action-buttons">
+                        <a asp-action="Edit" asp-route-id="@c.CostRateId" class="btn btn-sm btn-warning">Edit</a>
+                        @if (role == "Admin" && c.IsActive)
+                        {
+                            <form asp-action="Delete" asp-route-id="@c.CostRateId" method="post">
+                                <button class="btn btn-sm btn-danger" type="submit">Deactivate</button>
+                            </form>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

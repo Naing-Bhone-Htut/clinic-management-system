@@ -1,0 +1,39 @@
+@model IEnumerable<ClinicDocument>
+@{ ViewData["Title"] = "Clinic Documents"; var role = Context.Session.GetRole(); }
+
+<div class="page-toolbar">
+    <div></div>
+    @if (role is "Admin" or "Operator")
+    {
+        <a asp-action="Upload" class="btn btn-primary"><i class="bi bi-upload"></i> Upload Document</a>
+    }
+</div>
+
+<div class="table-responsive shadow-sm">
+    <table class="table table-striped">
+        <thead>
+        <tr><th>Title</th><th>Description</th><th>Uploaded</th><th class="text-end">Actions</th></tr>
+        </thead>
+        <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.Title</td>
+                <td>@d.Description</td>
+                <td>@d.UploadedDate.ToShortDateString()</td>
+                <td>
+                    <div class="action-buttons">
+                        <a asp-action="Download" asp-route-id="@d.ClinicDocumentId" class="btn btn-sm btn-info">Download</a>
+                        @if (role == "Admin")
+                        {
+                            <form asp-action="Delete" asp-route-id="@d.ClinicDocumentId" method="post">
+                                <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                            </form>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

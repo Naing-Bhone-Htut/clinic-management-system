@@ -1,0 +1,41 @@
+@model IEnumerable<PatientCheckIn>
+@{ ViewData["Title"] = "Check-In"; var role = Context.Session.GetRole(); }
+
+<div class="page-toolbar">
+    <div></div>
+    @if (role is "Admin" or "Operator" or "Nurse")
+    {
+        <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-lg"></i> New Check-In</a>
+    }
+</div>
+
+<div class="table-responsive shadow-sm">
+    <table class="table table-striped">
+        <thead>
+        <tr><th>Patient</th><th>Doctor</th><th>Check-In</th><th>Check-Out</th><th>Served</th><th class="text-end">Actions</th></tr>
+        </thead>
+        <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Patient.Person.FullName</td>
+                <td>@(c.Doctor?.Person.FullName ?? "-")</td>
+                <td>@c.CheckInDateTime.ToString("g")</td>
+                <td>@(c.CheckOutDateTime?.ToString("g") ?? "-")</td>
+                <td>@(c.IsServed ? "Yes" : "No")</td>
+                <td>
+                    <div class="action-buttons">
+                        <a asp-action="Edit" asp-route-id="@c.CheckInId" class="btn btn-sm btn-warning">Edit</a>
+                        @if (c.CheckOutDateTime == null && (role is "Admin" or "Operator" or "Nurse"))
+                        {
+                            <form asp-action="CheckOut" asp-route-id="@c.CheckInId" method="post">
+                                <button class="btn btn-sm btn-success" type="submit">Check Out</button>
+                            </form>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,20 @@
+﻿@model PatientFormViewModel
+<div class="row g-3">
+    <div class="col-md-4"><label asp-for="FirstName" class="form-label"></label><input asp-for="FirstName" class="form-control" placeholder="e.g. Hla" /><span asp-validation-for="FirstName" class="text-danger"></span></div>
+    <div class="col-md-4"><label asp-for="MiddleName" class="form-label"></label><input asp-for="MiddleName" class="form-control" placeholder="e.g. May (optional)" /></div>
+    <div class="col-md-4"><label asp-for="LastName" class="form-label"></label><input asp-for="LastName" class="form-control" placeholder="e.g. Hlaing" /><span asp-validation-for="LastName" class="text-danger"></span></div>
+    <div class="col-md-3"><label asp-for="Gender" class="form-label"></label><select asp-for="Gender" class="form-select"><option value="">-- Select gender --</option><option>Male</option><option>Female</option></select></div>
+    <div class="col-md-3"><label asp-for="DateOfBirth" class="form-label"></label><input asp-for="DateOfBirth" type="date" class="form-control" title="e.g. 1995-06-12" /></div>
+    <div class="col-md-3"><label asp-for="Phone" class="form-label"></label><input asp-for="Phone" class="form-control" placeholder="e.g. 09123456789" /></div>
+    <div class="col-md-3"><label asp-for="Email" class="form-label"></label><input asp-for="Email" class="form-control" placeholder="e.g. patient@email.com" /></div>
+    <div class="col-md-3"><label asp-for="PatientCode" class="form-label"></label><input asp-for="PatientCode" class="form-control" placeholder="e.g. PAT-003" /><span asp-validation-for="PatientCode" class="text-danger"></span></div>
+    <div class="col-md-3"><label asp-for="BloodType" class="form-label"></label><input asp-for="BloodType" class="form-control" placeholder="e.g. O+, A+, B+" /></div>
+    <div class="col-md-6"><label asp-for="Allergies" class="form-label"></label><input asp-for="Allergies" class="form-control" placeholder="e.g. Penicillin, None" /></div>
+    <div class="col-md-12"><label asp-for="MedicalHistory" class="form-label"></label><textarea asp-for="MedicalHistory" class="form-control" rows="2" placeholder="e.g. Hypertension since 2020"></textarea></div>
+    <div class="col-12"><hr /><h6>Address</h6></div>
+    <div class="col-md-6"><label asp-for="AddressLine1" class="form-label"></label><input asp-for="AddressLine1" class="form-control" placeholder="e.g. No. 10, Main Road" /><span asp-validation-for="AddressLine1" class="text-danger"></span></div>
+    <div class="col-md-6"><label asp-for="AddressLine2" class="form-label"></label><input asp-for="AddressLine2" class="form-control" placeholder="e.g. Ward 5 (optional)" /></div>
+    <div class="col-md-4"><label asp-for="City" class="form-label"></label><input asp-for="City" class="form-control" placeholder="e.g. Yangon" /></div>
+    <div class="col-md-4"><label asp-for="State" class="form-label"></label><input asp-for="State" class="form-control" placeholder="e.g. Yangon Region" /></div>
+    <div class="col-md-4"><label asp-for="PostalCode" class="form-label"></label><input asp-for="PostalCode" class="form-control" placeholder="e.g. 11101" /></div>
+</div>

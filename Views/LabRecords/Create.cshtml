@@ -1,0 +1,10 @@
+﻿@model LabRecord
+@{ ViewData["Title"] = "Add Lab Record"; }
+<form asp-action="Create" method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
+<partial name="_LabForm" />
+<div class="form-actions d-flex flex-wrap align-items-center mt-4 pt-3 border-top">
+    <button class="btn btn-primary" type="submit">Save Lab Record</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</div>
+</form>
+@section Scripts{<partial name="_ValidationScriptsPartial"/>}

@@ -1,0 +1,6 @@
+﻿@model CostRate
+<div class="mb-3"><label asp-for="CostCode" class="form-label"></label><input asp-for="CostCode" class="form-control" placeholder="e.g. CONSULT, LAB-BLOOD" /><span asp-validation-for="CostCode" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="Description" class="form-label"></label><input asp-for="Description" class="form-control" placeholder="e.g. Doctor Consultation Fee" /></div>
+<div class="mb-3"><label asp-for="CostAmount" class="form-label"></label><input asp-for="CostAmount" class="form-control" placeholder="e.g. 15000" /></div>
+<div class="mb-3"><label asp-for="CostType" class="form-label"></label><select asp-for="CostType" class="form-select" asp-items="Html.GetEnumSelectList<ClinicManagementSystem.Models.Enums.CostType>()"></select></div>
+<div class="form-check mb-3"><input asp-for="IsActive" class="form-check-input" /><label asp-for="IsActive" class="form-check-label"></label></div>

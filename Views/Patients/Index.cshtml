@@ -1,0 +1,47 @@
+@model IEnumerable<Patient>
+@{ ViewData["Title"] = "Patients"; var role = Context.Session.GetRole(); }
+
+<div class="page-toolbar">
+    <form method="get" class="d-flex gap-2">
+        <input name="search" value="@ViewBag.Search" class="form-control" placeholder="e.g. name, patient code, or phone" />
+        <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i> Search</button>
+    </form>
+    @if (role is "Admin" or "Operator")
+    {
+        <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Add Patient</a>
+    }
+</div>
+
+<div class="table-responsive shadow-sm">
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr><th>Code</th><th>Name</th><th>Phone</th><th>Registered</th><th class="text-end">Actions</th></tr>
+        </thead>
+        <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.PatientCode</td>
+                <td>@p.Person.FullName</td>
+                <td>@p.Person.Phone</td>
+                <td>@p.RegistrationDate.ToShortDateString()</td>
+                <td>
+                    <div class="action-buttons">
+                        <a asp-action="Details" asp-route-id="@p.PatientId" class="btn btn-sm btn-info">Details</a>
+                        @if (role is "Admin" or "Operator")
+                        {
+                            <a asp-action="Edit" asp-route-id="@p.PatientId" class="btn btn-sm btn-warning">Edit</a>
+                            @if (role == "Admin")
+                            {
+                                <form asp-action="Delete" asp-route-id="@p.PatientId" method="post" onsubmit="return confirm('Delete?');">
+                                    <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                                </form>
+                            }
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

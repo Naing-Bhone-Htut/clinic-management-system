@@ -1,0 +1,30 @@
+@model IEnumerable<IncomeBill>
+@{ ViewData["Title"] = "Income Bills"; }
+
+<div class="page-toolbar">
+    <div></div>
+    <a asp-action="CreateIncome" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Create Income Bill</a>
+</div>
+
+<div class="table-responsive shadow-sm">
+    <table class="table table-striped">
+        <thead>
+        <tr><th>Date</th><th>Patient</th><th>Total (MMK)</th><th class="text-end">Actions</th></tr>
+        </thead>
+        <tbody>
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td>@b.BillDate.ToShortDateString()</td>
+                <td>@b.Patient.Person.FullName</td>
+                <td>@b.TotalAmount.ToString("N0")</td>
+                <td>
+                    <div class="action-buttons">
+                        <a asp-action="IncomeDetails" asp-route-id="@b.IncomeBillId" class="btn btn-sm btn-info">Details</a>
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

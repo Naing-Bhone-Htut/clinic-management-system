@@ -1,0 +1,31 @@
+@model DashboardViewModel
+@{ ViewData["Title"] = "Dashboard"; }
+<div class="row g-3 mb-4">
+    <div class="col-md-3"><div class="card card-stat shadow-sm"><div class="card-body"><h6>Total Patients</h6><h3>@Model.TotalPatients</h3></div></div></div>
+    <div class="col-md-3"><div class="card card-stat shadow-sm"><div class="card-body"><h6>Total Doctors</h6><h3>@Model.TotalDoctors</h3></div></div></div>
+    <div class="col-md-3"><div class="card card-stat shadow-sm"><div class="card-body"><h6>Today's Patients</h6><h3>@Model.TodaysPatients</h3></div></div></div>
+    <div class="col-md-3"><div class="card card-stat income shadow-sm"><div class="card-body"><h6>Net (Income - Expense)</h6><h3>@((Model.IncomeSummary - Model.ExpenseSummary).ToString("N0")) MMK</h3></div></div></div>
+</div>
+<div class="row g-3 mb-4">
+    <div class="col-md-6"><div class="card card-stat income shadow-sm"><div class="card-body"><h6>Income Summary</h6><h3>@Model.IncomeSummary.ToString("N0") MMK</h3></div></div></div>
+    <div class="col-md-6"><div class="card card-stat expense shadow-sm"><div class="card-body"><h6>Expense Summary</h6><h3>@Model.ExpenseSummary.ToString("N0") MMK</h3></div></div></div>
+</div>
+<div class="card shadow-sm">
+    <div class="card-header">Recent Check-Ins</div>
+    <div class="card-body table-responsive">
+        <table class="table table-striped">
+            <thead><tr><th>Patient</th><th>Doctor</th><th>Time</th><th>Served</th></tr></thead>
+            <tbody>
+            @foreach (var c in Model.RecentCheckIns)
+            {
+                <tr>
+                    <td>@c.Patient.Person.FullName (@c.Patient.PatientCode)</td>
+                    <td>@(c.Doctor?.Person.FullName ?? "-")</td>
+                    <td>@c.CheckInDateTime.ToString("g")</td>
+                    <td>@(c.IsServed ? "Yes" : "No")</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

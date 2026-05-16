@@ -1,0 +1,16 @@
+﻿@model CheckInFormViewModel
+<div class="row g-3">
+<div class="col-md-6"><label asp-for="PatientId" class="form-label">Patient</label><select asp-for="PatientId" asp-items="Model.Patients" class="form-select"><option value="">-- Select patient --</option></select></div>
+<div class="col-md-6"><label asp-for="DoctorId" class="form-label">Doctor</label><select asp-for="DoctorId" asp-items="Model.Doctors" class="form-select"><option value="">-- Select doctor --</option></select></div>
+<div class="col-md-4"><label asp-for="CheckInDateTime" class="form-label"></label><input asp-for="CheckInDateTime" type="datetime-local" class="form-control" title="e.g. today 09:00 AM" /></div>
+<div class="col-md-4"><label asp-for="CheckOutDateTime" class="form-label"></label><input asp-for="CheckOutDateTime" type="datetime-local" class="form-control" title="e.g. today 11:30 AM (optional)" /></div>
+<div class="col-md-4 form-check mt-4"><input asp-for="IsServed" class="form-check-input" /><label asp-for="IsServed" class="form-check-label">Served</label></div>
+<div class="col-12"><label asp-for="Notes" class="form-label"></label><textarea asp-for="Notes" class="form-control" placeholder="e.g. Regular checkup, follow-up in 2 weeks"></textarea></div>
+<div class="col-12"><hr/><h6>Vital Signs</h6></div>
+<div class="col-md-2"><label asp-for="BloodPressure" class="form-label"></label><input asp-for="BloodPressure" class="form-control" placeholder="e.g. 120/80" /></div>
+<div class="col-md-2"><label asp-for="Temperature" class="form-label"></label><input asp-for="Temperature" class="form-control" placeholder="e.g. 36.6" /></div>
+<div class="col-md-2"><label asp-for="PulseRate" class="form-label"></label><input asp-for="PulseRate" class="form-control" placeholder="e.g. 72" /></div>
+<div class="col-md-2"><label asp-for="RespiratoryRate" class="form-label"></label><input asp-for="RespiratoryRate" class="form-control" placeholder="e.g. 16" /></div>
+<div class="col-md-2"><label asp-for="Weight" class="form-label"></label><input asp-for="Weight" class="form-control" placeholder="e.g. 55 (kg)" /></div>
+<div class="col-md-2"><label asp-for="Height" class="form-label"></label><input asp-for="Height" class="form-control" placeholder="e.g. 160 (cm)" /></div>
+</div>

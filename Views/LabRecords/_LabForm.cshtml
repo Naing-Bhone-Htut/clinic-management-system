@@ -1,0 +1,10 @@
+﻿@model LabRecord
+<div class="row g-3">
+<div class="col-md-6"><label class="form-label">Patient</label><select asp-for="PatientId" asp-items="ViewBag.Patients" class="form-select"><option value="">-- Select patient --</option></select></div>
+<div class="col-md-6"><label class="form-label">Doctor</label><select asp-for="DoctorId" asp-items="ViewBag.Doctors" class="form-select"><option value="">-- Select doctor (optional) --</option></select></div>
+<div class="col-md-6"><label asp-for="TestName" class="form-label"></label><input asp-for="TestName" class="form-control" placeholder="e.g. Complete Blood Count" /></div>
+<div class="col-md-6"><label asp-for="TestDate" class="form-label"></label><input asp-for="TestDate" type="date" class="form-control" title="e.g. today's date" /></div>
+<div class="col-12"><label asp-for="TestResult" class="form-label"></label><textarea asp-for="TestResult" class="form-control" rows="3" placeholder="e.g. All values within normal range"></textarea></div>
+<div class="col-12"><label asp-for="Notes" class="form-label"></label><input asp-for="Notes" class="form-control" placeholder="e.g. Fasting required before test" /></div>
+<div class="col-12"><label class="form-label">Upload Document</label><input type="file" name="document" class="form-control" title="e.g. PDF or image lab report" /></div>
+</div>
